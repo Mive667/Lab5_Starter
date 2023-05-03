@@ -1,5 +1,6 @@
 # Lab 5 - Starter
 
-name： Yulin Luo  
+contributors:
 
-partner: Changming Liu
+* Changming Liu
+* Yulin Luo
