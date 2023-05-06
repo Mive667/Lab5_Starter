@@ -4,10 +4,10 @@
 window.addEventListener('DOMContentLoaded', init);
 
 function init() {
-  const image=document.querySelector("#explore img");
-  const voice=document.getElementById("voice-select");
-  const play=document.querySelector("#explore button");
-  const text=document.getElementById("text-to-speak");
+  const image = document.querySelector("#explore img");
+  const voice = document.getElementById("voice-select");
+  const play = document.querySelector("#explore button");
+  const text = document.getElementById("text-to-speak");
   
   function aa(){
     const voices=speechSynthesis.getVoices();

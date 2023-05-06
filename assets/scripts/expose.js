@@ -6,7 +6,7 @@ function init() {
 
   // select a horn from drop down menu.
   const selectHorn = document.getElementById("horn-select");
-  var selectedValue;
+  var selectedValue; // store the Strig of selected horn name
   const hornImage = document.querySelector("#expose img");
 
   // select audio and volume
@@ -58,6 +58,7 @@ function init() {
         confettiRadius: 100,
         confettiNumber: 100
       });
+      jsConfetti.clearCanvas();
     }
   });
 }
