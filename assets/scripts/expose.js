@@ -3,54 +3,61 @@
 window.addEventListener('DOMContentLoaded', init);
 
 function init() {
-  // TODO
+
   // select a horn from drop down menu.
   const selectHorn = document.getElementById("horn-select");
+  var selectedValue;
   const hornImage = document.querySelector("#expose img");
+
+  // select audio and volume
   const hornAudio = new Audio();
   const volume = document.querySelector("#volume-controls img");
-  const volumeslider = document.getElementById("volume");
-  const play=document.querySelector("#expose button");
+  const volumeSlider = document.getElementById("volume");
+  const play = document.querySelector("#expose button");
 
   // handle drop down change event
+  // set corresponding image and audio source
   selectHorn.addEventListener("change", (event) => {
-    const selectedValue = event.target.value;
-
-    // console.log("now select " + selectedValue);
-
+    selectedValue = event.target.value;
     let hornImageRoute = "assets/images/" + selectedValue + ".svg";
     let hornAudioRoute = "assets/audio/" + selectedValue + ".mp3"
-
-    // console.log("imageRoute: " + hornImageRoute);
-    // console.log("audioRoute: " + hornAudioRoute);
-  
     hornImage.src = hornImageRoute;
     hornImage.alt = selectedValue;
     hornAudio.src = hornAudioRoute;
-
   });
 
-  volumeslider.addEventListener("change",(event)=>{
-    const selectedvolume=event.target.value;
-    hornAudio.volume=selectedvolume/100;
-    if(selectedvolume==="0"){
-      volume.src="assets/icons/volume-level-0.svg";
+  // handle volumSlider change event
+  // set volume level according to slider
+  volumeSlider.addEventListener("change", (event)=>{
+    const selectedVolume = event.target.value;
+    hornAudio.volume = selectedVolume / 100;
+    if (selectedVolume === "0"){
+      volume.src = "assets/icons/volume-level-0.svg";
     }
-    else if(selectedvolume<34){
-      volume.src="assets/icons/volume-level-1.svg";
+    else if (selectedVolume < 34){
+      volume.src = "assets/icons/volume-level-1.svg";
     }
-    else if(selectedvolume<67){
-      volume.src="assets/icons/volume-level-2.svg";
+    else if (selectedVolume < 67){
+      volume.src = "assets/icons/volume-level-2.svg";
     }
     else{
-      volume.src="assets/icons/volume-level-3.svg";
+      volume.src = "assets/icons/volume-level-3.svg";
     }
   })
 
-  play.addEventListener("click",(event)=>{
+  // handle playButton change event
+  play.addEventListener("click", (event)=>{
     hornAudio.play();
-    if (selectHorn==="party-horn"){
-        confetti.start();
+    // confetti shoot out
+    const jsConfetti = new JSConfetti();
+    console.log(selectHorn)
+    if (selectedValue == "party-horn"){
+      jsConfetti.addConfetti({
+        emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸'],
+        emojiSize: 80,
+        confettiRadius: 100,
+        confettiNumber: 100
+      });
     }
   });
 }
