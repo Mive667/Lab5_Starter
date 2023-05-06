@@ -9,9 +9,8 @@ function init() {
   const play = document.querySelector("#explore button");
   const text = document.getElementById("text-to-speak");
   
-  function aa(){
-    const voices=speechSynthesis.getVoices();
-    voice.innerHTML = "";
+  function populateVoiceList(){
+    const voices = speechSynthesis.getVoices();
     voices.forEach((c) => {
       const option = document.createElement("option");
       option.textContent = `${c.name} (${c.lang})`;
@@ -24,9 +23,10 @@ function init() {
     });
   }
 
-  aa();
+  populateVoiceList();
+
   if (speechSynthesis.onvoiceschanged !== undefined) {
-    speechSynthesis.onvoiceschanged = aa;
+    speechSynthesis.onvoiceschanged = populateVoiceList;
   }
 
   play.addEventListener("click", ()=>{
